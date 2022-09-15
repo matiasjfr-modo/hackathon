@@ -185,7 +185,7 @@
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = 2MHB2UB27Z;
+						DevelopmentTeam = BQMFKVBVTZ;
 						LastSwiftMigration = 1240;
 						ProvisioningStyle = Automatic;
 					};
@@ -393,7 +393,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2MHB2UB27Z;
+				DEVELOPMENT_TEAM = BQMFKVBVTZ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -407,7 +407,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = matia.fito.example.modo;
+				PRODUCT_BUNDLE_IDENTIFIER = ModoAI.example;
 				PRODUCT_NAME = VisionCameraExample;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "VisionCameraExample-Bridging-Header.h";
@@ -437,7 +437,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = matia.fito.example.modo;
+				PRODUCT_BUNDLE_IDENTIFIER = ModoAI.example;
 				PRODUCT_NAME = VisionCameraExample;
 				SWIFT_OBJC_BRIDGING_HEADER = "VisionCameraExample-Bridging-Header.h";
 				SWIFT_VERSION = 5.2;

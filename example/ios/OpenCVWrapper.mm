@@ -26,8 +26,6 @@ cout << "OpenCV: ";
 return [OpenCVWrapper _imageFrom:[OpenCVWrapper _grayFrom:[OpenCVWrapper _matFrom:source]]];
 }
 
-
-
 #pragma mark Private
 
 + (Mat)_grayFrom:(Mat)source {
