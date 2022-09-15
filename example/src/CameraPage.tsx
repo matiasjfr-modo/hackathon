@@ -22,7 +22,7 @@ import { CaptureButton } from './views/CaptureButton';
 import { PressableOpacity } from 'react-native-pressable-opacity';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import IonIcon from 'react-native-vector-icons/Ionicons';
-import { examplePlugin } from './frame-processors/ExamplePlugin';
+import { examplePluginSwift } from './frame-processors/ExamplePlugin';
 import type { Routes } from './Routes';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useIsFocused } from '@react-navigation/core';
@@ -199,9 +199,9 @@ export function CameraPage({ navigation }: Props): React.ReactElement {
 
   const frameProcessor = useFrameProcessor((frame) => {
     'worklet';
-    const values = examplePlugin(frame);
+    const values = examplePluginSwift(frame);
     console.log(`FRAME PROCESSOR Return Values: ${JSON.stringify(values)}`);
-    console.log(`FRAME PROCESSOR Return Values2: ${JSON.stringify(frame)}`);
+    console.log(`FRAME PROCESSOR Return FRAME: ${JSON.stringify(frame)}`);
   }, []);
 
   const onFrameProcessorSuggestionAvailable = useCallback((suggestion: FrameProcessorPerformanceSuggestion) => {

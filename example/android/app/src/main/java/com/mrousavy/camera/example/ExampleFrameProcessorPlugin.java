@@ -10,7 +10,9 @@ import org.jetbrains.annotations.NotNull;
 public class ExampleFrameProcessorPlugin extends FrameProcessorPlugin {
     @Override
     public Object callback(@NotNull ImageProxy image, @NotNull Object[] params) {
-        Log.d("ExamplePlugin ANDROID", image.getWidth() + " x " + image.getHeight() + " Image with format #" + image.getFormat() + ". Logging " + params.length + " parameters:");
+        // Log.d("FRAME:::::", image + " parameters:");
+
+        // Log.d("ExamplePlugin ANDROID", image.getWidth() + " x " + image.getHeight() + " Image with format #" + image.getFormat() + ". Logging " + params.length + " parameters:");
 
         for (Object param : params) {
             Log.d("ExamplePlugin ANDROID", "  -> " + (param == null ? "(null)" : param.toString() + " (" + param.getClass().getName() + ")"));
@@ -22,9 +24,9 @@ public class ExampleFrameProcessorPlugin extends FrameProcessorPlugin {
         map.putDouble("example_double", 5.3);
 
         WritableNativeArray array = new WritableNativeArray();
-        array.pushString("Hello!");
+        array.pushString("Helloooo!");
         array.pushBoolean(true);
-        array.pushDouble(17.38);
+        array.pushDouble(11111.38);
 
         map.putArray("example_array", array);
         return map;
