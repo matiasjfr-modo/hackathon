@@ -8,7 +8,6 @@
 
 import AVKit
 import Vision
-//import opencv2
 
 @objc(ExamplePluginSwift)
 public class ExamplePluginSwift: NSObject, FrameProcessorPluginBase {
@@ -22,6 +21,9 @@ public class ExamplePluginSwift: NSObject, FrameProcessorPluginBase {
       let image = self.convert(cmage: ciimage)
       
       let grayImage = OpenCVWrapper.toGray(image)
+      
+      
+      
       
       let base64: String = grayImage.base64 ?? ""
 
