@@ -8,15 +8,22 @@
 
 import AVKit
 import Vision
+//import opencv2
 
 @objc(ExamplePluginSwift)
 public class ExamplePluginSwift: NSObject, FrameProcessorPluginBase {
     @objc
     public static func callback(_ frame: Frame!, withArgs args: [Any]!) -> Any! {
+        NSLog("FRAME IOS:::::: \(frame)");
         guard let imageBuffer = CMSampleBufferGetImageBuffer(frame.buffer) else {
             return nil
         }
-        NSLog("ExamplePlugin: \(CVPixelBufferGetWidth(imageBuffer)) x \(CVPixelBufferGetHeight(imageBuffer)) Image. Logging \(args.count) parameters:")
+      let ciimage = CIImage(cvPixelBuffer: imageBuffer)
+      let image = self.convert(cmage: ciimage)
+      
+      let grayImage = OpenCVWrapper.toGray(image)
+      
+      let base64: String = grayImage.base64 ?? ""
 
         args.forEach { arg in
             var string = "\(arg)"
@@ -29,6 +36,7 @@ public class ExamplePluginSwift: NSObject, FrameProcessorPluginBase {
         }
 
         return [
+          "base_64" : base64,
             "example_str": "Test",
             "example_bool": true,
             "example_double": 5.3,
@@ -38,5 +46,18 @@ public class ExamplePluginSwift: NSObject, FrameProcessorPluginBase {
                 17.38,
             ],
         ]
+    }
+  
+  public static func convert(cmage: CIImage) -> UIImage {
+       let context = CIContext(options: nil)
+       let cgImage = context.createCGImage(cmage, from: cmage.extent)!
+       let image = UIImage(cgImage: cgImage)
+       return image
+  }
+}
+
+extension UIImage {
+    var base64: String? {
+        self.jpegData(compressionQuality: 1)?.base64EncodedString()
     }
 }
