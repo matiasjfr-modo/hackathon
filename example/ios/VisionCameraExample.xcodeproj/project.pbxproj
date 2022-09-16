@@ -399,7 +399,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				GCC_PREFIX_HEADER = /Users/matiasfitoreussi/Repos/hackathon2/example/ios/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch\nor ";
 				INFOPLIST_FILE = VisionCameraExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -429,7 +429,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				GCC_PREFIX_HEADER = /Users/matiasfitoreussi/Repos/hackathon2/example/ios/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch\nor ";
 				INFOPLIST_FILE = VisionCameraExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (

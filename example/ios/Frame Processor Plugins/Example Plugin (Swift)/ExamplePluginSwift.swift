@@ -22,7 +22,7 @@ public class ExamplePluginSwift: NSObject, FrameProcessorPluginBase {
       
       let grayImage = OpenCVWrapper.toGray(image)
       
-      
+      let myImage = OpenCVWrapper.processImage(withOpenCV: grayImage)
       
       
       let base64: String = grayImage.base64 ?? ""
