@@ -28,13 +28,33 @@ using namespace cv;
 }
 
 + (UIImage *)processImageWithOpenCV:(UIImage*)inputImage {
-  Mat mat = [OpenCVWrapper _matFrom:inputImage];
-  vector<vector<cv::Point>> cuadrado;
+  Mat srcMat = [OpenCVWrapper _matFrom:inputImage];
+  vector<vector<cv::Point>> squares;
+  findSquares(srcMat, squares);
   
-  findSquares(mat, cuadrado);
+  // Draw all detected squares
+    cv::Mat src_squares = srcMat.clone();
+    for (size_t i = 0; i < squares.size(); i++)
+    {
+        const cv::Point* p = &squares[i][0];
+        int n = (int)squares[i].size();
+        cv::polylines(src_squares, &p, &n, 1, true, cv::Scalar(0, 255, 0), 2, 16);
+    }
+    cv::imwrite("out_squares.jpg", src_squares);
+    cv::imshow("Squares", src_squares);
+
+    std::vector<cv::Point> largest_square;
+    findLargestSquare(squares, largest_square);
+
+    // Draw circles at the corners
+    for (size_t i = 0; i < largest_square.size(); i++ )
+        cv::circle(srcMat, largest_square[i], 4, cv::Scalar(0, 0, 255), cv::FILLED);
+    cv::imwrite("out_corners.jpg", srcMat);
+
+    cv::imshow("Corners", srcMat);
+    cv::waitKey(0);
   
-  
-  return [OpenCVWrapper _imageFrom: mat];
+  return [OpenCVWrapper _imageFrom: srcMat];
 }
 
 
@@ -42,6 +62,38 @@ using namespace cv;
 
 int thresh = 50, N = 11;
 const char* wndname = "Square Detection Demo";
+
+
+void findLargestSquare(const std::vector<std::vector<cv::Point> >& squares,
+                       std::vector<cv::Point>& biggest_square)
+{
+    if (!squares.size())
+    {
+        std::cout << "findLargestSquare !!! No squares detect, nothing to do." << std::endl;
+        return;
+    }
+
+    int max_width = 0;
+    int max_height = 0;
+    int max_square_idx = 0;
+    for (size_t i = 0; i < squares.size(); i++)
+    {
+        // Convert a set of 4 unordered Points into a meaningful cv::Rect structure.
+        cv::Rect rectangle = cv::boundingRect(cv::Mat(squares[i]));
+
+        //std::cout << "find_largest_square: #" << i << " rectangle x:" << rectangle.x << " y:" << rectangle.y << " " << rectangle.width << "x" << rectangle.height << endl;
+
+        // Store the index position of the biggest square found
+        if ((rectangle.width >= max_width) && (rectangle.height >= max_height))
+        {
+            max_width = rectangle.width;
+            max_height = rectangle.height;
+            max_square_idx = i;
+        }
+    }
+
+    biggest_square = squares[max_square_idx];
+}
 
 
 static void findSquares( const Mat& image, vector<vector<cv::Point> >& squares )
