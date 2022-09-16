@@ -13,7 +13,6 @@ import Vision
 public class ExamplePluginSwift: NSObject, FrameProcessorPluginBase {
     @objc
     public static func callback(_ frame: Frame!, withArgs args: [Any]!) -> Any! {
-        NSLog("FRAME IOS:::::: \(frame)");
         guard let imageBuffer = CMSampleBufferGetImageBuffer(frame.buffer) else {
             return nil
         }
@@ -24,8 +23,10 @@ public class ExamplePluginSwift: NSObject, FrameProcessorPluginBase {
       
       let myImage = OpenCVWrapper.processImage(withOpenCV: grayImage)
       
+      print("----------------------------------------------")
+      print(myImage.base64 ?? "No tengo base 64 perrita")
       
-      let base64: String = grayImage.base64 ?? ""
+      let base64: String = myImage.base64 ?? ""
 
         args.forEach { arg in
             var string = "\(arg)"
