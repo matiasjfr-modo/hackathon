@@ -233,7 +233,7 @@ export function CameraPage({ navigation }: Props): React.ReactElement {
                 // frameProcessor={device.supportsParallelVideoProcessing ? frameProcessor : undefined}
                 frameProcessor={frameProcessor}
                 orientation="portrait"
-                frameProcessorFps={1}
+                frameProcessorFps={0.1}
                 onFrameProcessorPerformanceSuggestionAvailable={onFrameProcessorSuggestionAvailable}
               />
             </TapGestureHandler>
